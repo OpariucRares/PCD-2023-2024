@@ -16,7 +16,8 @@ namespace Dogo.Infrastructure.Data
     {
         public DatabaseContext(DbContextOptions options) : base(options)
         {
-            Database.EnsureCreated();
+            //NOTE(Rares): this must be commented when using the hosted DB
+            //Database.EnsureCreated();
         }
 
         public DbSet<User> User => Set<User>();
