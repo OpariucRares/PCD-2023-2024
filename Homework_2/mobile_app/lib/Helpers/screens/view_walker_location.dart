@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart' as lt;
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mobile_app/Helpers/config.dart';
+import 'package:signalr_core/src/hub_connection.dart';
 import '../../../Helpers/constants.dart' as constants;
 import '../../../Helpers/config.dart' as config;
 import '../../entities/address.dart';
@@ -119,6 +121,8 @@ class _ViewWalkerLocationState extends State<ViewWalkerLocation> {
       _destinationMarker = getDestinationMarker();
       markers[_destinationMarker.markerId] = _destinationMarker;
     }
+
+    getPositionWithWebSockets();
 
     // getStartPostionMarker();
     getWalkerPosition().then((value) =>
@@ -439,5 +443,23 @@ class _ViewWalkerLocationState extends State<ViewWalkerLocation> {
     LatLng position = const LatLng(0, 0);
     await fetchPosition(_walkerId).then((value) => position = value!);
     return position;
+  }
+
+  getPositionWithWebSockets(){
+    connection.on('ReceivedPosition', (message) {
+        // log("ReceivedPosition called with lat: $lat, log: $log");
+        // _currentLatLng = LatLng(lat, log);
+        //  markers[_cupmId] = createCurrentUserPositionMarker(_currentLatLng);
+        // calculateDistanceToPickUp();
+        // if (_destinationAddress != null) {
+        //   calculateDistanceToDestination();
+        // }
+
+       
+
+
+
+        print(message);
+    } as MethodInvocationFunc);
   }
 }

@@ -43,8 +43,10 @@ Future<void> putPosition(String userId, double lat, double lng) async {
     return;
   }
 
+
+  await connection.invoke('UpdatePosition', args: [ '$lat*$lng']);
+
   log('Ok. Position $lat, $lng updated for user $userId');
-  log(response.statusCode.toString());
 }
 
 Future<int> assignAppointment(String appointmentId, String walkerId) async {
