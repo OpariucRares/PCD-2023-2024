@@ -35,7 +35,6 @@ public class ClientEventHub : Hub
 		string position
 	)
 	{
-
 		await Clients.All.SendAsync("ReceivedPosition", position);
 	}
 }

@@ -95,7 +95,7 @@ namespace Dogo.Application
             string base_Url = "https://maps.googleapis.com/maps/api/distancematrix/json?";
             string mode = "mode=" + travelMode;
             string units = "units=metric";
-            string apiKey = $"key={Config.GOOGLE_APY_KEY}";
+            string apiKey = $"key=AIzaSyAi4_xNCIhmQTmUL4LEJGM4B7TW44T2Ylc";
 
             var URL = $"{base_Url}origins={fromLat},{fromLong}&destinations={toLat},{toLong}&{mode}&{units}&{apiKey}";
             var responseContent = await (await client.GetAsync(URL)).Content.ReadAsStringAsync();

@@ -36,17 +36,25 @@ Future<void> putPosition(String userId, double lat, double lng) async {
       <String, String>{'Content-Type': 'application/json; charset=UTF-8'});
 
   var response = await request.send();
+
+  log('Response: ${response.statusCode}');
+  print('Response: ${response.statusCode}');
+
+  var latLong = '$lat*$lng';
+
+  print('UpdatePosition: $latLong');
+  print('Connection: $connection');
+
+  await connection.invoke('UpdatePosition', args: [latLong]);
+
+  log('Ok. Position $lat, $lng updated for user $userId');
+
   if (response.statusCode != 200) {
     log('Error');
     log(await response.stream.bytesToString());
     log(response.statusCode.toString());
     return;
   }
-
-
-  await connection.invoke('UpdatePosition', args: [ '$lat*$lng']);
-
-  log('Ok. Position $lat, $lng updated for user $userId');
 }
 
 Future<int> assignAppointment(String appointmentId, String walkerId) async {

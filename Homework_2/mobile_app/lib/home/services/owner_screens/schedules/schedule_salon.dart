@@ -90,7 +90,6 @@ class _Page extends State<ScheduleSalonPage> {
     log('notes: ${_noteController.text}');
 
     if (_selectedPet.name == '' ||
-        _dateController.text == '' ||
         _selectedDuration == '' ||
         _selectedAddress.street == '') {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -102,8 +101,10 @@ class _Page extends State<ScheduleSalonPage> {
       return;
     }
 
-    var dateTime = DateTime(_fullDate.year, _fullDate.month, _fullDate.day,
-        _fullDate.hour, _fullDate.minute);
+    // var dateTime = DateTime(_fullDate.year, _fullDate.month, _fullDate.day,
+    //     _fullDate.hour, _fullDate.minute);
+
+    var dateTime = DateTime.now().add(const Duration(days: 1));
 
     var appointment = Appointment(
       petId: _selectedPet.id,

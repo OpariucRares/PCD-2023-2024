@@ -122,8 +122,6 @@ class _ViewWalkerLocationState extends State<ViewWalkerLocation> {
       markers[_destinationMarker.markerId] = _destinationMarker;
     }
 
-    getPositionWithWebSockets();
-
     // getStartPostionMarker();
     getWalkerPosition().then((value) =>
         getStartPostionMarker(value).then((_) => generateRoute().then((_) {
@@ -443,23 +441,5 @@ class _ViewWalkerLocationState extends State<ViewWalkerLocation> {
     LatLng position = const LatLng(0, 0);
     await fetchPosition(_walkerId).then((value) => position = value!);
     return position;
-  }
-
-  getPositionWithWebSockets(){
-    connection.on('ReceivedPosition', (message) {
-        // log("ReceivedPosition called with lat: $lat, log: $log");
-        // _currentLatLng = LatLng(lat, log);
-        //  markers[_cupmId] = createCurrentUserPositionMarker(_currentLatLng);
-        // calculateDistanceToPickUp();
-        // if (_destinationAddress != null) {
-        //   calculateDistanceToDestination();
-        // }
-
-       
-
-
-
-        print(message);
-    } as MethodInvocationFunc);
   }
 }

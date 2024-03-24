@@ -1,6 +1,7 @@
 using Dogo.Application;
 using Dogo.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Tempus.Infrastructure.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,5 +52,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<ClientEventHub>("hub");
 
 app.Run();
