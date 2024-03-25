@@ -41,11 +41,11 @@ var app = builder.Build();
 app.UseHealthChecks("/health");
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseHttpsRedirection();
 
@@ -55,15 +55,4 @@ app.MapControllers();
 
 app.MapHub<ClientEventHub>("hub");
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
-
-if (environment == "Development")
-{
-    app.Run();
-}
-else
-{
-    var url = string.Concat("http://0.0.0.0:", port);
-    app.Run(url);
-}
+app.Run();
