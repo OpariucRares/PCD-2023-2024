@@ -2,13 +2,13 @@ steps:
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 
-           '_GCR_HOSTNAME/${PROJECT_ID}/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA', 
+           '_GCR_HOSTNAME/${_PROJECT_ID}/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA', 
            '.']
 
   # Docker Push
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 
-           '_GCR_HOSTNAME/${PROJECT_ID}/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA']
+           '_GCR_HOSTNAME/${_PROJECT_ID}/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA']
 
   # Entrypoint, timeout and environment variables
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -17,7 +17,7 @@ steps:
     args: ['compute', 'instances', 
            'create-with-container', 'my-vm-name',
            '--container-image', 
-           '_GCR_HOSTNAME/${PROJECT_ID}/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA']
+           '_GCR_HOSTNAME/${_PROJECT_ID}/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA']
     env:
       - 'CLOUDSDK_COMPUTE_REGION=us-central1'
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
