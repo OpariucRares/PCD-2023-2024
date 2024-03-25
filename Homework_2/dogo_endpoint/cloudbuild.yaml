@@ -21,6 +21,8 @@ steps:
       - '--platform'
       - $_PLATFORM
     entrypoint: gcloud
+options:
+  logging: CLOUD_LOGGING_ONLY
 timeout: 1200s
 images:
   - '$_GCR_HOSTNAME/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
