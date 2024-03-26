@@ -456,7 +456,7 @@ class _PagePathViewerState extends State<PagePathViewer> {
   Widget showMap() {
     return GoogleMap(
       initialCameraPosition: _cameraPosition!,
-      mapType: MapType.normal,
+      mapType: MapType.hybrid,
       zoomControlsEnabled: false,
       tiltGesturesEnabled: false,
       onCameraMove: (position) => _currentLatLng = position.target,

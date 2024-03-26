@@ -25,7 +25,7 @@ class _PageLocationPickerState extends State<PageLocationPicker> {
   late LatLng _currentLatLng;
 
   String _selectedAddressStr = '';
-  double _zoomLevel = 17;
+  double _zoomLevel = 18;
 
   final double _maxZoomLevel = 20;
   final double _minZoomLevel = 3;
@@ -80,7 +80,7 @@ class _PageLocationPickerState extends State<PageLocationPicker> {
   Widget showMap() {
     return GoogleMap(
       initialCameraPosition: _cameraPosition!,
-      mapType: MapType.normal,
+      mapType: MapType.hybrid,
       zoomControlsEnabled: false,
       tiltGesturesEnabled: false,
       onCameraIdle: () => getAddress(_currentLatLng),

@@ -88,16 +88,29 @@ class _ViewWalkerLocationState extends State<ViewWalkerLocation> {
     log('updateWalkerPosition called with milliseconds: $milliseconds');
 
     _timer = Timer.periodic(Duration(milliseconds: milliseconds), (timer) {
+      // Rest API implementation
+      // if (_isMapReady) {
+      //   getWalkerPosition().then((value) {
+      //     setState(() {
+      //       _currentLatLng = value;
+      //       markers[_cupmId] = createCurrentUserPositionMarker(_currentLatLng);
+      //       calculateDistanceToPickUp();
+      //       if (_destinationAddress != null) {
+      //         calculateDistanceToDestination();
+      //       }
+      //     });
+      //   });
+      // }
+
+      // SignalR implementation
       if (_isMapReady) {
-        getWalkerPosition().then((value) {
-          setState(() {
-            _currentLatLng = value;
-            markers[_cupmId] = createCurrentUserPositionMarker(_currentLatLng);
-            calculateDistanceToPickUp();
-            if (_destinationAddress != null) {
-              calculateDistanceToDestination();
-            }
-          });
+        setState(() {
+          _currentLatLng = walkerPosition;
+          markers[_cupmId] = createCurrentUserPositionMarker(_currentLatLng);
+          calculateDistanceToPickUp();
+          if (_destinationAddress != null) {
+            calculateDistanceToDestination();
+          }
         });
       }
     });
@@ -366,7 +379,7 @@ class _ViewWalkerLocationState extends State<ViewWalkerLocation> {
   Widget showMap() {
     return GoogleMap(
       initialCameraPosition: _cameraPosition!,
-      mapType: MapType.normal,
+      mapType: MapType.hybrid,
       zoomControlsEnabled: false,
       tiltGesturesEnabled: false,
       onCameraMove: (position) => _currentLatLng = position.target,
