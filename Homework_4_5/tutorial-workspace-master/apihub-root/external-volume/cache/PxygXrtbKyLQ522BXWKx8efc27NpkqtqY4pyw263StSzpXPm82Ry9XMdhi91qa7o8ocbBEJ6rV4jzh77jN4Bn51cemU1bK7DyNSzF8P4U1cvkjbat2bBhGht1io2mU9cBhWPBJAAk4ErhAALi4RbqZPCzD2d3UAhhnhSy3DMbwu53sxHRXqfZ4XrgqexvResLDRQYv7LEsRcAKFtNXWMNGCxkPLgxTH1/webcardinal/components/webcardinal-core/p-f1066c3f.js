@@ -1,0 +1,1 @@
+import{s as o}from"./p-bb51835b.js";const s=()=>o((o=>o.mode||o.getAttribute("mode")||"default"));export{s as a}
