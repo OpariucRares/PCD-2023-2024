@@ -1,4 +1,24 @@
-<webc-container controller="ExampleController" class="homepage">
-    <p>{{ @name }} is a <strong>framework</strong> for building Self Sovereign Applications and Web Applications.</p>
-    <p>Read more about <a target="_blank" href="https://opendsu.com/wallets/webcardinal/overview">WebCardinal</a> and <a target="_blank" href="https://opendsu.com/">OpenDSU</a>.</p>
-</webc-container>
+<link rel="stylesheet" href="pages/styles/home.css">
+
+<page-template>
+    <div slot="page-content">
+        <webc-container controller="ExampleController" class="homepage">
+
+            <!-- Navigation Bar -->
+            <nav class="navigation">
+                  <div id="home" class="tab">Home</div>
+                  <div id="my-votes" class="tab">My Votes</div>
+                  <div id="vote" class="tab">Vote</div>
+
+            </nav>
+
+            <div class="candidate">
+                <div class="candidate-image">
+                    <img src="@candidate.image" alt="Candidate Image">
+                </div>
+                <div class="candidate-info">
+                    <h2>{{ @candidate.name }}</h2>
+            </div>
+        </webc-container>
+    </div>
+</page-template>
